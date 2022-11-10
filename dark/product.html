@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Business Title</title>
+        <link rel="icon" type="image/png" href="https://flinoid.com/images/2.png">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" name="viewport">
+        <meta charset="UTF-8">
+        <meta name="description" content="contains what we do fillme">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <link type="text/css" rel="stylesheet" href="css/theme.css">
+            <!-- Google Tag Manager -->
+            <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-NGB5ZJP"></script><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-NGB5ZJP');</script>
+            <!-- End Google Tag Manager -->
+        
+               <link href="https://fonts.googleapis.com/css?family=Varela+Round|Muli:200,400,800|Poppins|Lato|Playfair+Display" rel="stylesheet">
+                <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Luckiest+Guy|Mansalva|Righteous|Saira+Stencil+One&amp;display=swap" rel="stylesheet">
+                <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+                <script>
+                     const shareData = {
+                        title: 'Product Name',
+                        text: 'This is where the product description fits in' + ' the product price.',
+                        url: 'https://developer.mozilla.org'
+                    }
+                    
+                    let timeout;
+                    let states;
+
+                    // Share must be triggered by "user activation"
+                    async function shareme(){
+                        
+                    try {
+                        await navigator.share(shareData);
+                        states="success";
+                        metime();
+                        
+                    } catch (err) {
+                        states="failure";
+                        metime();
+                    }
+                }
+
+                function metime() {
+                    var notifdiv = document.getElementById("notif");
+                    var notiftyp = document.getElementById("notifyType");
+
+                        notifdiv.classList.toggle("active");
+                        notiftyp.classList.toggle(states);
+                        timeout = setTimeout(alertFunc, 3000);
+                    }
+    
+
+                    function alertFunc(){
+                        var notifdiv = document.getElementById("notif");
+                        var notiftyp = document.getElementById("notifyType");
+                        notifdiv.classList.remove("active");
+                        switch (states) {
+                            case "success":
+                            notiftyp.classList.remove("success");
+                                break;
+                            case "failure":
+                            notiftyp.classList.remove("failure");
+                                break;
+                            }
+                    }
+                </script>
+            </head>
+    <body>
+        <div class="main-frame">
+            <!-- NOTIFICATION START-->
+            <div class="notify" id="notif">
+                <span id="notifyType" class="">
+
+                </span>
+            </div>
+            <!-- NOTIFICATION ENDS -->
+
+            <div class="header-frame">
+                <a href="" class="logo-frame" title="Business Name Logo">
+                        <img class="img-logo" src="img/logo.png" title="Business Name Logo">
+                
+            </a>
+                <div class="right-btn">
+                    <button class="cart-btn">
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="25px" height="25px" fill="#4425A9" viewBox="0 0 486.895 486.895" style="enable-background:new 0 0 486.895 486.895;"
+	 xml:space="preserve">
+<g>
+	<g>
+		<polygon points="370.178,200.104 265.146,200.104 259.082,273.64 350.91,273.64 		"/>
+		<polygon points="39.273,287.821 50.851,332.007 132.203,332.007 128.558,287.821 		"/>
+		<polygon points="120.151,185.922 116.194,137.924 0,137.924 12.576,185.922 		"/>
+		<polygon points="250.92,200.104 135.55,200.104 141.616,273.64 244.855,273.64 		"/>
+		<polygon points="16.291,200.104 35.558,273.64 127.386,273.64 121.323,200.104 		"/>
+		<polygon points="134.381,185.922 252.089,185.922 256.049,137.924 130.422,137.924 		"/>
+		<path d="M408.395,69.634c-1.809,0.979-3.574,2.269-5.26,3.957c-19.213,19.236-38.424,38.471-57.637,57.707
+			c-2.104,2.107-3.596,4.345-4.613,6.629h-70.611l-3.959,47.999h107.576l8.113-30.976c15.336-15.356,30.674-30.709,46.01-46.065
+			h38.305c27.436,0,27.436-42.544,0-42.544h-46.326C415.326,66.338,411.471,67.589,408.395,69.634z"/>
+		<polygon points="254.269,332.007 335.617,332.007 347.195,287.821 257.914,287.821 		"/>
+		<polygon points="240.042,332.007 243.684,287.821 142.785,287.821 146.429,332.007 		"/>
+		<circle cx="93.816" cy="383.061" r="37.493"/>
+		<circle cx="292.65" cy="383.061" r="37.493"/>
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+                        </svg>
+                    </button>
+                    <button onclick="shareme();" class="share-btn">
+                        <svg width="25" height="25" color="#FFFFFF" fill="#FFFFFF" viewBox="0 0 15 20" enable-background="new 0 0 24 24" class="sc-gKsewC eGzrup"><path d="M15.0006 9.37454V16.8749C14.9999 17.7035 14.6704 18.4979 14.0845 19.0838C13.4986 19.6697 12.7041 19.9992 11.8755 20H3.12513C2.29653 19.9992 1.50209 19.6697 0.916175 19.0838C0.330264 18.4979 0.000764569 17.7035 0 16.8749V9.37454C0.000764569 8.54594 0.330264 7.7515 0.916175 7.16558C1.50209 6.57967 2.29653 6.25017 3.12513 6.24941H5.00021C5.16598 6.24941 5.32496 6.31526 5.44217 6.43248C5.55939 6.54969 5.62524 6.70867 5.62524 6.87444C5.62524 7.0402 5.55939 7.19918 5.44217 7.3164C5.32496 7.43361 5.16598 7.49946 5.00021 7.49946H3.12513C2.628 7.50001 2.15138 7.69773 1.79985 8.04926C1.44832 8.40079 1.2506 8.87741 1.25005 9.37454V16.8749C1.2506 17.372 1.44832 17.8486 1.79985 18.2001C2.15138 18.5517 2.628 18.7494 3.12513 18.7499H11.8755C12.3726 18.7494 12.8493 18.5517 13.2008 18.2001C13.5523 17.8486 13.75 17.372 13.7506 16.8749V9.37454C13.75 8.87741 13.5523 8.40079 13.2008 8.04926C12.8493 7.69773 12.3726 7.50001 11.8755 7.49946H10.0004C9.83466 7.49946 9.67568 7.43361 9.55847 7.3164C9.44125 7.19918 9.3754 7.0402 9.3754 6.87444C9.3754 6.70867 9.44125 6.54969 9.55847 6.43248C9.67568 6.31526 9.83466 6.24941 10.0004 6.24941H11.8755C12.7041 6.25017 13.4986 6.57967 14.0845 7.16558C14.6704 7.7515 14.9999 8.54594 15.0006 9.37454V9.37454ZM4.19208 4.81625L6.87529 2.13298V12.4997C6.87529 12.6654 6.94115 12.8244 7.05836 12.9416C7.17558 13.0589 7.33455 13.1247 7.50032 13.1247C7.66609 13.1247 7.82507 13.0589 7.94228 12.9416C8.0595 12.8244 8.12535 12.6654 8.12535 12.4997V2.13298L10.8086 4.81621C10.8662 4.87591 10.9352 4.92352 11.0114 4.95628C11.0877 4.98904 11.1697 5.00628 11.2527 5.007C11.3357 5.00772 11.418 4.99191 11.4948 4.96048C11.5716 4.92905 11.6414 4.88264 11.7001 4.82396C11.7588 4.76527 11.8052 4.69549 11.8366 4.61867C11.868 4.54186 11.8839 4.45956 11.8831 4.37657C11.8824 4.29358 11.8652 4.21156 11.8324 4.1353C11.7997 4.05905 11.752 3.99008 11.6924 3.93242L7.943 0.183011C7.82548 0.0658139 7.66629 0 7.50032 0C7.33435 0 7.17516 0.0658139 7.05764 0.183011L3.30824 3.93241C3.19439 4.05029 3.13139 4.20817 3.13281 4.37205C3.13424 4.53593 3.19997 4.6927 3.31586 4.80858C3.43174 4.92447 3.58851 4.9902 3.75239 4.99163C3.91627 4.99305 4.07415 4.93005 4.19203 4.8162L4.19208 4.81625Z" fill="currentColor"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="c-pro-pics">
+                <div class="slide st">
+
+                </div>
+                <div class="slide nd">
+                    
+                </div>
+                <div class="slide rd">
+                    
+                </div>
+                <div class="c-guide">
+                    <label class="c-swipe">
+                        Swipe
+                    </label>
+                </div>
+            </div>
+            <div class="c-des">
+                <div class="c-pro-details">
+                    <div class="c-pro-name">
+                        <h3 class="cpn">Product Name</h3>
+                    </div>
+                    <div class="c-pro-des">
+                        <p class="cpd">this is the product details or you can say product description.</p>
+                    </div>
+                    <div class="c-pro-cost">
+                        <h4 class="cpc">#234,343</h4>
+                    </div>
+                </div>
+                <div class="c-action">
+                    <div class="acn-hld">
+                        <button class="buy">
+                            Buy Now
+                        </button>
+                        <button class="ad-crt">
+                            Add To Cart <span>+</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="big-foot">
+            <div class="foot-frame">
+                <p class="flinoid">
+                    Powered by Flinoid Texvo
+                </p>
+                <a class="report-shop">
+                    Report Shop
+                </a>
+        </div>
+    </footer>
+    </body>
+</html>

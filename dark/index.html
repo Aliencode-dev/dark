@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Business Title</title>
+        <link rel="icon" type="image/png" href="https://flinoid.com/images/2.png">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" name="viewport">
+        <meta charset="UTF-8">
+        <meta name="description" content="contains what we do fillme">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <link type="text/css" rel="stylesheet" href="css/theme.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- Google Tag Manager -->
+            <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-NGB5ZJP"></script><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-NGB5ZJP');</script>
+            <!-- End Google Tag Manager -->
+        
+               <link href="https://fonts.googleapis.com/css?family=Varela+Round|Muli:200,400,800|Poppins|Lato|Playfair+Display" rel="stylesheet">
+                <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Luckiest+Guy|Mansalva|Righteous|Saira+Stencil+One&amp;display=swap" rel="stylesheet">
+                <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+                <script>
+                    var popupQuerySelector = "";
+                    var cartvalueopen = false;
+                    var childclass= "";
+                    var newwind = "";
+
+                    const shareData = {
+                        title: 'Business Title',
+                        text: 'Business Description',
+                        url: window.location.href
+                    }
+                    
+                    let timeout;
+                    let states;
+
+                    // Share must be triggered by "user activation"
+                    async function shareme(){
+                        
+                    try {
+                        await navigator.share(shareData);
+                        states="success";
+                        metime();
+                        
+                    } catch (err) {
+                        states="failure";
+                        metime();
+                    }
+                }
+
+                function metime() {
+                    var notifdiv = document.getElementById("notif");
+                    var notiftyp = document.getElementById("notifyType");
+
+                        notifdiv.classList.toggle("active");
+                        notiftyp.classList.toggle(states);
+                        timeout = setTimeout(alertFunc, 3000);
+                    }
+    
+
+                    function alertFunc(){
+                        var notifdiv = document.getElementById("notif");
+                        var notiftyp = document.getElementById("notifyType");
+                        notifdiv.classList.remove("active");
+                        switch (states) {
+                            case "success":
+                            notiftyp.classList.remove("success");
+                                break;
+                            case "failure":
+                            notiftyp.classList.remove("failure");
+                                break;
+                            }
+                    }
+// SEARCH FUNCTION BELOW
+function searchFunction() {
+    var input, filter, pcontain, pcard, pid, h3, i, txtValue;
+    input = document.getElementById("Search-Input");
+    filter = input.value.toUpperCase();
+    pcontain = document.getElementById("myUL");
+    pcard = pcontain.getElementsByTagName("a");
+    pid = pcontain.getElementsByClassName("product-id");
+    for (i = 0; i < pid.length; i++) {
+        h3 = pid[i].getElementsByTagName("h3")[0];
+        txtValue = h3.textContent || h3.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            pcard[i].style.display = "";
+        } else {
+            pcard[i].style.display = "none";
+        }
+    }
+}
+// REMOVE CART POP
+function removeshow(event){
+    var getactive = document.querySelector('#activeclass');
+    if (getactive){
+        getactive.removeAttribute('id');
+        try {
+            var getshow = document.querySelector('.show');
+            getshow.classList.remove('show');
+            document.querySelector('.about').id="about-business";
+            popupQuerySelector = "";
+            cartvalueopen = false;
+            childclass = "";
+        } catch (error) {
+        }
+    }else{
+        try {
+            var getshow = document.querySelector('.show');
+            getshow.classList.remove('show');
+            document.querySelector('.about').id="about-business";
+            popupQuerySelector = "";
+            cartvalueopen = false;
+            childclass = "";
+        } catch (error) {
+        }
+    }
+}
+
+function dontadd(event){
+    removeshow();
+    var myparent = event.target.parentNode.parentNode;
+    myparent.id = "";
+    myparent.id = "activeclass";
+    var gtparent = document.querySelector('#activeclass');
+    var gtchild = gtparent.querySelector('.addcart2');
+    gtchild.className = gtchild.className + " show";
+    popupQuerySelector = ".show";
+    childclass = ".addcart2";
+}
+function addval(event){
+        var myinputparent = event.target.parentNode;
+        myinputparent.id = "activeaddval";
+        var inputparent = document.querySelector('#activeaddval');
+        var inputvalue = inputparent.querySelector('input').value;
+        inputparent.querySelector('input').value ++;
+        myinputparent.id = "";
+        try {
+            document.querySelector('#activeaddval').removeAttribute('id');
+        } catch (error) {
+        }
+    }
+
+    function subval(event){
+        var myinputparent = event.target.parentNode;
+        myinputparent.id = "activeaddval";
+        var inputparent = document.querySelector('#activeaddval');
+        var inputvalue = inputparent.querySelector('input').value;
+        if (inputvalue <= 1) return;
+        inputparent.querySelector('input').value --;
+        myinputparent.id = "";
+        try {
+            document.querySelector('#activeaddval').removeAttribute('id');
+        } catch (error) {
+        }
+    }
+    function closepolicy(event){
+        removeshow();
+    }
+    function showpolicy(event){
+        removeshow();
+        var myparent = document.querySelector('.about');
+        myparent.id = "";
+        myparent.id = "activeclass";
+        document.querySelector('.show-policy').classList.add('show');
+        popupQuerySelector = ".show";
+        childclass = ".show-policy";
+    }
+    function checkvalue(event){
+        if (event.target.value <1) event.target.value=1;
+    }
+
+    // ASYNC FOR POPUP
+    async function checkload(event){
+            try {
+                await dontadd(event);
+                cartvalueopen = true;
+            } catch (err) {
+                cartvalueopen = false;
+            }
+        }
+
+        async function checkpolicyload(event){
+            try {
+                await showpolicy(event);
+                cartvalueopen = true;
+            } catch (err) {
+                cartvalueopen = false;
+            }
+        }
+
+        // Convert to rgb
+        function hexToRgb(hex) {
+        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+            } : null;
+        }
+
+    //Windows Event Pickup
+    window.addEventListener("click", function(event){
+        //WHATSAPP
+        if (event.target.className == "whats-app"){
+            whatsapp("Busiiness Name", "081 09 694 608");
+        }
+        // SHARE BUTTON
+        if (event.target.parentNode.className == "share-btn"){
+            shareme();
+        }
+        // CART BUTTON
+        if (event.target.parentNode.className == "cart-btn"){
+            window.open('../dark/cart.html', '_top');
+        }
+
+        // OPEN CART POPUP
+        if (event.target.parentNode.className == "addcart1"){
+            checkload(event);
+        }
+        // CLOSE CART POPUP
+        if (cartvalueopen){
+            // Check if the filter list parent element exist
+            const isClosest = event.target.closest(popupQuerySelector);
+            const popupEl = document.querySelector('#activeclass').querySelector(childclass);
+            
+            if (!isClosest && popupEl.classList.contains("show")) {
+                removeshow(event);
+            }
+        }
+
+        // OPEN POLICY
+        if (event.target.className == "b-policy"){
+            checkpolicyload(event);
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function(event){
+        // ADD YOUR PHP VARIABLE FOR BANNER AND LOGO BELOW
+        var phpbanner = "../img/bgdetails.jpg";
+        var phplogo = "../img/logo.png";
+
+        // LOAD LOGO AND BANNER
+        var getr = document.querySelector(':root');
+        var logoloc = "url(" + '"' + phplogo + '"' + ")";
+        var bannerloc = "url(" + '"' + phpbanner + '"' + ")";
+        getr.style.setProperty('--logo', logoloc);
+        getr.style.setProperty('--banner', bannerloc);
+
+        // ADJUST COLOR
+        var adjcolor = getComputedStyle(getr).getPropertyValue('--cardcolor').trim();
+        var rgbcode = "rgba(" + hexToRgb(adjcolor).r + ", " + hexToRgb(adjcolor).g + ", " + hexToRgb(adjcolor).b + ", 0.8)";
+        getr.style.setProperty('--rgb1', rgbcode)
+    });
+
+
+    //End Windows Event Pickup
+    function whatsapp(name, number){
+        var frmnum = number.split(" ").join("");
+        if (frmnum.substr(0,1) == "+"){
+            frmnum = frmnum;
+        }else if (frmnum.substr(0,1) == "0"){
+            frmnum = "+234" + frmnum.substr(1, frmnum.length);
+        }
+        var mesg = "Hello " + name + " i'm reaching out from your website, i want to make enquiry about";
+        mesg = mesg.split(" ").join("%20");
+        var walink = "https://wa.me/" + frmnum + "/?text=" + mesg;
+        window.open(walink, "_blank");
+        
+    }
+
+
+    function gotoproduct(){
+
+    }
+    </script>
+    </head>
+    <body>
+        <div class="main-frame">
+            <!-- NOTIFICATION START-->
+            <div class="notify" id="notif">
+                <span id="notifyType" class="">
+
+                </span>
+            </div>
+            <!-- NOTIFICATION ENDS -->
+
+            <div class="header-frame">
+                <a href="" class="logo-frame" title="Business Name Logo">
+                </a>
+                <div class="right-btn">
+                    <button class="cart-btn" title="Show Items in Cart">
+                        <span></span>
+                    </button>
+                    <button class="share-btn">
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+            <div class="bus-details">
+                <div class="inner-frame">
+                    <div class="biz-tagline">
+                        <h3 class="b-n txtoverflow">
+                            Klair Super Woman
+                        </h3>
+                        <h2 class="b-tagtext">
+                            This Is The business Tagline
+                        </h2>
+                    </div>
+                    <div class="bus-btn-contain">
+                    <a class="whats-app">
+                        Contact Us
+                    </a>
+                    <a href="#about-business" class="abt-us">
+                        About Us
+                    </a>
+                </div>
+                </div>
+
+            </div>
+            <div class="body-details">
+                <div class="search-frame">
+                    <div class="a-zsign">
+                        <span></span>
+                    </div>
+                    <input title="Enter text to search" id="Search-Input" onkeyup="searchFunction()"  type="text" placeholder="Enter Product Name to Search" class="search-box">
+                </div>
+                <div class="slider-frame">
+                    <div class="slide-head">
+                        <div class="sh-text">
+                            <h2 class="slide-text">
+                                Product Slide
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="slide-body">
+                        <div class="product-cont"  id="myUL">
+                            <div class="product-card">
+                                <div class="product-dis">
+                                    <a href="product.html">
+                                    </a>
+                                    <img class="pro-img" src="../dark/img/white.jpg">
+                                    <div class="addcart1">
+                                        <span></span>
+                                    </div>
+                                    <div class="addcart2" id="cart-dia">
+                                            <div class="no-item">
+                                                <button onclick="addval(event);" class="addme">
+                                                    +
+                                                </button>
+                                                <input name="display" onkeyup="checkvalue(event);" min="1" max="" type="number" class="disp-me" title="Input no" value="1" required autofocus>
+                                                <button onclick="subval(event);" class="removeme">
+                                                    -
+                                                </button>
+                                            </div>
+                                            <div class="cart-btn-contain">
+                                                <button class="addcart3">
+                                                    Add To Cart
+                                                </button>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="product-id">
+                                    <h3 class="proname txtoverflow">
+                                        Classic italian
+                                    </h3>
+                                </div>
+                                <h3 class="pro-cost">#14,000</h3>
+                            </div>
+                            <div class="product-card">
+                                <div class="product-dis">
+                                    <a href="product.html">
+                                    </a>
+                                        <img class="pro-img" src="../dark/img/blue.jpg">
+                                        <div class="addcart1">
+                                            <span></span>
+                                        </div>
+                                        <div class="addcart2" id="cart-dia">
+                                            <div class="no-item">
+                                                <button onclick="addval(event);" class="addme">
+                                                    +
+                                                </button>
+                                                <input onkeyup="checkvalue(event);" name="display" min="1" type="number" class="disp-me" title="Input no" value="1" required autofocus>
+                                                <button onclick="subval(event);" class="removeme">
+                                                    -
+                                                </button>
+                                            </div>
+                                            <div class="cart-btn-contain">
+                                                <button class="addcart3">
+                                                    Add To Cart
+                                                </button>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="product-id">
+                                    <h3 class="proname txtoverflow">
+                                        shoes for men
+                                    </h3>
+                                </div>
+                                <h3 class="pro-cost">#14,000</h3>
+                            </div>
+                            <a class="product-card">
+                                <div class="product-dis">
+                                        <img class="pro-img" src="../dark/img/black.webp">
+                                        <div class="addcart1">
+                                           <span></span>
+                                        </div>
+                                        <div class="addcart2" id="cart-dia">
+                                            <div class="no-item">
+                                                <button onclick="addval(event);" class="addme">
+                                                    +
+                                                </button>
+                                                <input onkeyup="checkvalue(event);" min="1" name="display" type="number" class="disp-me" title="Input no" value="1" required autofocus>
+                                                <button onclick="subval(event);" class="removeme">
+                                                    -
+                                                </button>
+                                            </div>
+                                            <div class="cart-btn-contain">
+                                                <button class="addcart3">
+                                                    Add To Cart
+                                                </button>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="product-id">
+                                    <h3 class="proname txtoverflow">
+                                        shirts for men
+                                    </h3>
+                                </div>
+                                <h3 class="pro-cost">#14,000</h3>
+                            </a>
+                            <a class="product-card">
+                                <div class="product-dis">
+                                        <img class="pro-img" src="../dark/img/redstrip.jpg">
+                                        <div class="addcart1">
+                                           <span></span>
+                                        </div>
+                                        <div class="addcart2" id="cart-dia">
+                                            <div class="no-item">
+                                                <button onclick="addval(event);" class="addme">
+                                                    +
+                                                </button>
+                                                <input onkeyup="checkvalue(event);" min="1" name="display" type="number" class="disp-me" title="Input no" value="1" required autofocus>
+                                                <button onclick="subval(event);" class="removeme">
+                                                    -
+                                                </button>
+                                            </div>
+                                            <div class="cart-btn-contain">
+                                                <button class="addcart3">
+                                                    Add To Cart
+                                                </button>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="product-id">
+                                    <h3 class="proname txtoverflow">
+                                        italian
+                                    </h3>
+                                </div>
+                                <h3 class="pro-cost">#14,000</h3>
+                            </a>
+                            <a class="product-card">
+                                    <div class="product-dis">
+                                            <img class="pro-img" src="../dark/img/whitebg.webp">
+                                            <div class="addcart1">
+                                                <span></span>
+                                            </div>
+                                            <div class="addcart2" id="cart-dia">
+                                                <div class="no-item">
+                                                    <button onclick="addval(event);" class="addme">
+                                                        +
+                                                    </button>
+                                                    <input onkeyup="checkvalue(event);" min="1" name="display" type="number" class="disp-me" title="Input no" value="1" required autofocus>
+                                                    <button onclick="subval(event);" class="removeme">
+                                                        -
+                                                    </button>
+                                                </div>
+                                                <div class="cart-btn-contain">
+                                                    <button class="addcart3">
+                                                        Add To Cart
+                                                    </button>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="product-id">
+                                        <h3 class="proname txtoverflow">
+                                            baby wear
+                                        </h3>
+                                    </div>
+                                    <h3 class="pro-cost">#14,000</h3>
+                            </a>
+                            <a class="product-card">
+                                    <div class="product-dis">
+                                            <img class="pro-img" src="../dark/img/blackbg.jpg">
+                                            <div class="addcart1">
+                                              <span></span>
+                                            </div>
+                                            <div class="addcart2" id="cart-dia">
+                                                <div class="no-item">
+                                                    <button onclick="addval(event);" class="addme">
+                                                        +
+                                                    </button>
+                                                    <input onkeyup="checkvalue(event);" name="display" min="1" type="number" class="disp-me" title="Input no" value="1" required autofocus>
+                                                    <button onclick="subval(event);" class="removeme">
+                                                        -
+                                                    </button>
+                                                </div>
+                                                <div class="cart-btn-contain">
+                                                    <button class="addcart3">
+                                                        Add To Cart
+                                                    </button>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="product-id">
+                                        <h3 class="proname txtoverflow">
+                                            Classic nigerian
+                                        </h3>
+                                    </div>
+                                    <h3 class="pro-cost">#14,000</h3>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="about" id="about-business">
+                    <div class="show-policy">
+                        <div onclick="closepolicy(event);" class="close-policy">
+                        </div>
+                        <div class="policy-main">
+                        <h3 class="policy-head">
+                            Privacy Policy
+                        </h3>
+                        <p>Business Name&nbsp;respects your privacy as our user. This Privacy Policy explains how we collect, use, disclose and safeguard your information when you visit our website NAME OF WEBSITE. Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.</p>
+
+<p>We reserve the right to make changes to this privacy policy at any time and for any reason. we will alert you about any changes by updating the &quot;Last Updated&quot; date of this Privacy Policy. Any changes or modification will be effective immediately upon posting the updated privacy policy on the site, and you waive the right to receive specific notice of each such change or modification.</p>
+
+<p>You are encouraged to periodically review this Privacy Policy to stay informed of updates. You will be deemed to have been made aware of , will be subject to and will be deemed to have accepted the changes in any revised Privacy policy by your continued use of the site after the date such revised Privacy Policy is posted.</p>
+
+<p>Collection of Your Information</p>
+<p>We may collect information about you in a variety of ways. the information we may collect on the site includes:</p>
+
+<p>Personal Data</p>
+<p>Personally identifiable information, such as your name, shipping address, email address and telephone number, and demographic information such as your age, gender, hometown, and interests, that you voluntarily give to us when you register with the site or when you choose to participate in various activities related to the site such as reviews. you are under no obligation to provide us with personal information of any kind, however your refusal to do so may prevent you from using certain features of the site.</p>
+
+<p>Derivative Data</p>
+<p>Information our servers automatically collect when you access the site, such as your IP address, your browser type, your operating system, your access times and the pages you have viewed directly before and after accessing the site.</p>
+
+<p>Financial Data</p>
+<p>Financial Information, such as data related to your payment method (eg. valid credit card number, card brand, expiration date) that we may collect when you purchase, order, return, exchange, or request information about our services from the site, we store only very limited, if any, financial information that we collect. Otherwise, all financial information is stored by our payment processor PAYSTACK, and you are encouraged to review their privacy policy and contact them directly in response to your questions.</p>
+
+<p>Facebook &amp; Google Permissions&nbsp;&nbsp;</p>
+<p>The Site and our mobile application may by default access your Facebook and Google basic account information, including your name, email, gender, birthday, current city, and profile picture URL, as well as other information that you choose to make public. We may also request access to other permissions related to your account, such as friends, check ins, and likes, and you may choose to grant or deny us access to each individual permission. For more information regarding these permissions, refer to the Facebook and Google Permissions Reference page.</p>
+
+<p>Data From Social Networks</p>
+<p>User information from social networking sites, such as Apple&rsquo;s Game Center, Facebook, Google+, Instagram, Pinterest, Twitter, including your name, your social network username, location, gender, birth date, email address, profile picture, and public data for contacts, if you connect your account to such social networks. If you are using our mobile application, this information may also include the contact information of anyone you invite to use and/or join our mobile application.</p>
+
+<p>Mobile Device Data&nbsp;</p>
+<p>Device information, such as your mobile device ID, model, and manufacturer, and information about the location of your device, if you access the Site from a mobile device.</p>
+
+<p>Third-Party Data&nbsp;</p>
+<p>Information from third parties, such as personal information or network friends, if you connect your account to the third party and grant the Site permission to access this information.</p>
+
+<p>Data From Contests, Giveaways, and Surveys&nbsp;</p>
+<p>Personal and other information you may provide when entering contests or giveaways and/or responding to surveys.</p>
+
+<p>Mobile Application Information</p>
+<p>If you connect using our mobile application:</p>
+
+<ul>
+<li>
+    <p>Geo-Location Information.&nbsp;We may request access or permission to and track location-based information from your mobile device, either continuously or while you are using our mobile application, to provide location-based services. If you wish to change our access or permissions, you may do so in your device&rsquo;s settings.</p>
+</li>
+<li>
+    <p>Mobile Device Access.&nbsp;We may request access or permission to certain features from your mobile device, including your mobile device&rsquo;s [bluetooth, calendar, camera, contacts, microphone, reminders, sensors, SMS messages, social media accounts, storage,] and other features. If you wish to change our access or permissions, you may do so in your device&rsquo;s settings.</p>
+</li>
+<li>
+    <p>Mobile Device Data.&nbsp;We may collect device information (such as your mobile device ID, model and manufacturer), operating system, version information and IP address.</p>
+</li>
+<li>
+    <p>Push Notifications.&nbsp;We may request to send you push notifications regarding your account or the Application. If you wish to opt-out from receiving these types of communications, you may turn them off in your device&rsquo;s settings.</p>
+</li>
+</ul>
+
+<p>USE OF YOUR INFORMATION&nbsp;</p>
+
+<p>Having accurate information about you permits us to provide you with a smooth, efficient, and customized experience. Specifically, we may use information collected about you via the Site or our mobile application to:&nbsp;</p>
+
+<ul>
+<li>
+    <p>Administer sweepstakes, promotions, and contests.&nbsp;</p>
+</li>
+<li>
+    <p>Assist law enforcement and respond to subpoena.</p>
+</li>
+<li>
+    <p>Compile anonymous statistical data and analysis for use internally or with third parties.&nbsp;</p>
+</li>
+<li>
+    <p>Create and manage your account.</p>
+</li>
+<li>
+    <p>Deliver targeted advertising, coupons, newsletters, and other information regarding promotions and the Site and our mobile application to you.&nbsp;</p>
+</li>
+<li>
+    <p>Email you regarding your account or order.</p>
+</li>
+<li>
+    <p>Enable user-to-user communications.</p>
+</li>
+<li>
+    <p>Fulfill and manage purchases, orders, payments, and other transactions related to the Site and our mobile application.</p>
+</li>
+<li>
+    <p>Generate a personal profile about you to make future visits to the Site and our mobile application more personalized.</p>
+</li>
+<li>
+    <p>Increase the efficiency and operation of the Site and our mobile application.</p>
+</li>
+<li>
+    <p>Monitor and analyze usage and trends to improve your experience with the Site and our mobile application.</p>
+</li>
+<li>
+    <p>Notify you of updates to the Site and our mobile applications.</p>
+</li>
+<li>
+    <p>Offer new products, services, mobile applications, and/or recommendations to you.</p>
+</li>
+<li>
+    <p>Perform other business activities as needed.</p>
+</li>
+<li>
+    <p>Prevent fraudulent transactions, monitor against theft, and protect against criminal activity.</p>
+</li>
+<li>
+    <p>Process payments and refunds.</p>
+</li>
+<li>
+    <p>Request feedback and contact you about your use of the Site and our mobile application.&nbsp;</p>
+</li>
+<li>
+    <p>Resolve disputes and troubleshoot problems.</p>
+</li>
+<li>
+    <p>Respond to product and customer service requests.</p>
+</li>
+<li>
+    <p>Send you a newsletter.</p>
+</li>
+<li>
+    <p>Solicit support for the Site and our mobile application.</p>
+</li>
+<li>
+    <p>Other</p>
+</li>
+</ul>
+
+<p>DISCLOSURE OF YOUR INFORMATION</p>
+
+<p>We may share information we have collected about you in certain situations. Your information may be disclosed as follows: &nbsp;</p>
+
+<p>By Law or to Protect Rights&nbsp;</p>
+<p>If we believe the release of information about you is necessary to respond to legal process, to investigate or remedy potential violations of our policies, or to protect the rights, property, and safety of others, we may share your information as permitted or required by any applicable law, rule, or regulation. This includes exchanging information with other entities for fraud protection and credit risk reduction.</p>
+
+<p>Third-Party Service Providers&nbsp;</p>
+<p>We may share your information with third parties that perform services for us or on our behalf, including payment processing, data analysis, email delivery, hosting services, customer service, and marketing assistance. &nbsp;</p>
+
+<p>Marketing Communications</p>
+<p>With your consent, or with an opportunity for you to withdraw consent, we may share your information with third parties for marketing purposes, as permitted by law.</p>
+
+<p>Interactions with Other Users&nbsp;</p>
+<p>If you interact with other users of the Site [and our mobile application], those users may see your name, profile photo, and descriptions of your activity, including sending invitations to other users, chatting with other users, liking posts, following blogs.&nbsp;</p>
+
+<p>Online Postings</p>
+<p>When you post comments, contributions or other content to the Site or our mobile applications, your posts may be viewed by all users and may be publicly distributed outside the Site and our mobile application in perpetuity.&nbsp;</p>
+
+<p>Third-Party Advertisers&nbsp;</p>
+<p>We may use third-party advertising companies to serve ads when you visit the Site or our mobile application. These companies may use information about your visits to the Site and our mobile application and other websites that are contained in web cookies in order to provide advertisements about goods and services of interest to you.&nbsp;</p>
+
+<p>Affiliates&nbsp;</p>
+<p>We may share your information with our affiliates, in which case we will require those affiliates to honor this Privacy Policy. Affiliates include our parent company and any subsidiaries, joint venture partners or other companies that we control or that are under common control with us.</p>
+
+<p>Business Partners&nbsp;</p>
+<p>We may share your information with our business partners to offer you certain products, services or promotions.&nbsp;</p>
+
+<p>Offer Wall&nbsp;&nbsp;</p>
+<p>Our mobile application may display a third-party hosted &ldquo;offer wall.&rdquo; Such an offer wall allows third-party advertisers to offer virtual currency, gifts, or other items to users in return for acceptance and completion of an advertisement offer. Such an offer wall may appear in our mobile application and be displayed to you based on certain data, such as your geographic area or demographic information. When you click on an offer wall, you will leave our mobile application. A unique identifier, such as your user ID, will be shared with the offer wall provider in order to prevent fraud and properly credit your account. &nbsp;&nbsp;</p>
+
+<p>Social Media Contacts &nbsp;</p>
+<p>If you connect to the Site or our mobile application through a social network, your contacts on the social network will see your name, profile photo, and descriptions of your activity.</p>
+
+<p>Other Third Parties</p>
+<p>We may share your information with advertisers and investors for the purpose of conducting general business analysis. We may also share your information with such third parties for marketing purposes, as permitted by law.&nbsp;</p>
+
+<p>Sale or Bankruptcy&nbsp;</p>
+<p>If we reorganize or sell all or a portion of our assets, undergo a merger, or are acquired by another entity, we may transfer your information to the successor entity. If we go out of business or enter bankruptcy, your information would be an asset transferred or acquired by a third party. You acknowledge that such transfers may occur and that the transferee may decline honor commitments we made in this Privacy Policy.</p>
+
+<p>We are not responsible for the actions of third parties with whom you share personal or sensitive data, and we have no authority to manage or control third-party solicitations. If you no longer wish to receive correspondence, emails or other communications from third parties, you are responsible for contacting the third party directly.</p>
+
+<p>TRACKING TECHNOLOGIES</p>
+
+<p>Cookies and Web Beacons</p>
+<p>We may use cookies, web beacons, tracking pixels, and other tracking technologies on the Site [and our mobile application] to help customize the Site [and our mobile application] and improve your experience. When you access the Site [or our mobile application], your personal information is not collected through the use of tracking technology. Most browsers are set to accept cookies by default. You can remove or reject cookies, but be aware that such action could affect the availability and functionality of the Site [or our mobile application]. You may not decline web beacons. However, they can be rendered ineffective by declining all cookies or by modifying your web browser&rsquo;s settings to notify you each time a cookie is tendered, permitting you to accept or decline cookies on an individual basis.</p>
+
+<p>We may use cookies, web beacons, tracking pixels, and other tracking technologies on the Site [and our mobile application] to help customize the Site [and our mobile application] and improve your experience. For more information on how we use cookies, please refer to our Cookie Policy posted on the Site, which is incorporated into this Privacy Policy. By using the Site, you agree to be bound by our Cookie Policy.</p>
+
+<p>Internet-Based Advertising</p>
+<p>Additionally, we may use third-party software to serve ads on the Site [and our mobile application], implement email marketing campaigns, and manage other interactive marketing initiatives. This third-party software may use cookies or similar tracking technology to help manage and optimize your online experience with us. For more information about opting-out of interest-based ads, visit the Network Advertising Initiative Opt-Out Tool or Digital Advertising Alliance Opt-Out Tool.</p>
+
+<p>Website Analytics&nbsp;</p>
+<p>We may also partner with selected third-party vendors[, such as [Adobe Analytics,] [Clicktale,] [Clicky,] [Cloudfare,] [Crazy Egg,] [Flurry Analytics,] [Google Analytics,] [Heap Analytics,] [Inspectlet,] [Kissmetrics,] [Mixpanel,] [Piwik,] and others], to allow tracking technologies and remarketing services on the Site [and our mobile application] through the use of first party cookies and third-party cookies, to, among other things, analyze and track users&rsquo; use of the Site [and our mobile application] , determine the popularity of certain content and better understand online activity. By accessing the Site[,our mobile application,], you consent to the collection and use of your information by these third-party vendors. You are encouraged to review their privacy policy and contact them directly for responses to your questions. We do not transfer personal information to these third-party vendors. However, if you do not want any information to be collected and used by tracking technologies, you can visit the third-party vendor or the Network Advertising Initiative Opt-Out Tool or Digital Advertising Alliance Opt-Out Tool.</p>
+
+
+<p>You should be aware that getting a new computer, installing a new browser, upgrading an existing browser, or erasing or otherwise altering your browser&rsquo;s cookies files may also clear certain opt-out cookies, plug-ins, or settings.</p>
+
+<p>THIRD-PARTY WEBSITES</p>
+
+<p>The Site and our mobile application may contain links to third-party websites and applications of interest, including advertisements and external services, that are not affiliated with us. Once you have used these links to leave the Site or our mobile application, any information you provide to these third parties is not covered by this Privacy Policy, and we cannot guarantee the safety and privacy of your information. Before visiting and providing any information to any third-party websites, you should inform yourself of the privacy policies and practices (if any) of the third party responsible for that website, and should take those steps necessary to, in your discretion, protect the privacy of your information. We are not responsible for the content or privacy and security practices and policies of any third parties, including other sites, services or applications that may be linked to or from the Site [or our mobile application].</p>
+
+<p>SECURITY OF YOUR INFORMATION</p>
+
+<p>We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse. Any information disclosed online is vulnerable to interception and misuse by unauthorized parties. Therefore, we cannot guarantee complete security if you provide personal information.</p>
+
+<p>POLICY FOR CHILDREN</p>
+
+<p>We do not knowingly solicit information from or market to children under the age of 13. If you become aware of any data we have collected from children under age 13, please contact us using the contact information provided below.&nbsp;</p>
+
+<p>CONTROLS FOR DO-NOT-TRACK FEATURES&nbsp;&nbsp;</p>
+
+<p>Most web browsers and some mobile operating systems [and our mobile applications] include a Do-Not-Track (&ldquo;DNT&rdquo;) feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. No uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this Privacy Policy./Most web browsers and some mobile operating systems [and our mobile applications] include a Do-Not-Track (&ldquo;DNT&rdquo;) feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. If you set the DNT signal on your browser, we will respond to such DNT browser signals.&nbsp;</p>
+
+<p>OPTIONS REGARDING YOUR INFORMATION</p>
+
+<p>Account Information</p>
+<p>You may at any time review or change the information in your account or terminate your account by:</p>
+<ul>
+<li>
+    <p>Logging into your account settings and updating your account</p>
+</li>
+<li>
+    <p>Contacting us using the contact information provided below</p>
+</li>
+<li>
+    <p>[Other]</p>
+</li>
+</ul>
+<p>Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases. However, some information may be retained in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our Terms of Use and/or comply with legal requirements.]</p>
+
+<p>Emails and Communications</p>
+<p>If you no longer wish to receive correspondence, emails, or other communications from us, you may opt-out by:</p>
+<ul>
+<li>
+    <p>Noting your preferences at the time you register your account with the Site [or our mobile application]</p>
+</li>
+<li>
+    <p>Logging into your account settings and updating your preferences.</p>
+</li>
+<li>
+    <p>Contacting us using the contact information provided below</p>
+</li>
+</ul>
+<p>If you no longer wish to receive correspondence, emails, or other communications from third parties, you are responsible for contacting the third party directly.</p>
+<p>CONTACT US</p>
+
+<p>If you have questions or comments about this Privacy Policy, please contact us at:</p>
+<p>Email:&nbsp;<a href="mailto:ireservepolicy@gmail.com">ireservepolicy@gmail.com</a></p>
+
+
+                        <h3 class="policy-head">
+                            Termsof Service
+                        </h3>
+                        <p class="policy-body">
+                            All Goods purschased on this website are properties of the owner of this website please do well to adhare to these policies.
+                        </p>
+                        <h3 class="policy-head">
+                            Returns and Exchange
+                        </h3>
+                        <p class="policy-body">
+                            All Goods purschased on this website are properties of the owner of this website please do well to adhare to these policies.
+                        </p>
+                        <h3 class="policy-head">
+                            Shipping Policy
+                        </h3>
+                        <p class="policy-body">
+                            All Goods purschased on this website are properties of the owner of this website please do well to adhare to these policies.
+                        </p>
+                                                    
+                        </div>
+                    </div>
+                    <div class="about-head">
+                        <h2 class="abt">
+                            About
+                        </h2>
+                        <h3 class="bzname">
+                            Business Name
+                        </h3>
+                    </div>
+                    <div class="about-des">
+                        <p class="bzdes">
+                            Here i tell you all about  jusy lisyen alien ahwar a x ais ial fhh allkd a iiena my business so i will take my time to tell you all i do.
+                        </p>
+                        
+                    </div>
+                    <div class="about-loc">
+                        <div class="loc-icon">
+                        </div>
+                        <p class="bzloc">NO 23 ilepeju by pass onitsha lagos Apedebe road lagos Nigeria</p>
+                    </div>
+                    <div class="svgsocials">
+                        <a id="facebook" href="https://instagram.com/xclux_designers">
+                        </a>
+                        <a id="tiktok" href="https://instagram.com/xclux_designers">
+                        </a>
+                        <a id="email" href="https://instagram.com/xclux_designers">
+                        </a>
+                        <a id="instagram" href="https://instagram.com/xclux_designers">
+                        </a>
+                        <a id="linkedin" href="https://instagram.com/xclux_designers">
+                        </a>
+                        <a id="twitter" href="https://instagram.com/xclux_designers">
+                        </a>
+                        <a id="youtube" href="https://instagram.com/xclux_designers">
+                        </a>
+                        <a id="whatsapp" href="https://instagram.com/xclux_designers">
+                        </a>
+                    </div>
+                    <div class="bus-policy">
+                        <a class="b-policy">
+                            Business Policy
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <footer class="big-foot">
+                <div class="foot-frame">
+                    <p class="flinoid">
+                        Powered by Flinoid Texvo
+                    </p>
+                    <a class="report-shop">
+                        Report Shop
+                    </a>
+            </div>
+        </footer>
+    </body>
+</html>
